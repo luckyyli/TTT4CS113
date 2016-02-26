@@ -46,7 +46,42 @@ class TTT_stubs{
       return('Z');
    }
    static int getGameState(char [] b){
-      return(0);  
+
+     int gameState = 0;
+     
+     char s = 'X';
+     int i = 0;
+     
+     while (i<2){//tests if won
+         //across
+         if ((b[0]==s && b[1]==s && b[2]==s)||
+            (b[3]==s && b[4]==s && b[5]==s)||
+            (b[6]==s && b[7]==s && b[8]==s)||
+           //down 
+            (b[0]==s && b[3]==s && b[6]==s)||
+            (b[1]==s && b[4]==s && b[7]==s)||
+            (b[2]==s && b[5]==s && b[8]==s)||
+            //diagonal
+            (b[0]==s && b[4]==s && b[8]==s)||
+            (b[2]==s && b[4]==s && b[6]==s)){
+            
+            gameState = 2;
+            }
+            
+         s = 'O';
+         i++;
+     }
+     //tests if tie
+     i = 0;
+     for (i=0;i<b.length;i++){
+         if (b[i]=='#')
+            gameState = 0;
+         else 
+            gameState = 1;
+     
+     }
+     
+     return(gameState);  
    }
 
 
